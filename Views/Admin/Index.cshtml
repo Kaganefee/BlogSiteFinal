@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BlogSiteFinal.Models.BlogItemsModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<p>
+    <a class="w3-button w3-circle w3-teal" style="text-decoration:none" asp-action="Create">+</a>
+</p>
+<table class="w3-table w3-striped w3-border w3-hoverable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td class="w3-left-align">
+                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                </td>
+                <td class=" w3-right-align ">
+                    <img src="@("~/Image/"+item.ImageName)" asp-append-version="true" width="100px" height="100px" />
+                </td>
+                <td class=" w3-right-align">
+
+                    <a class="btn" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+                    <a class="btn" asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                    <a class="btn" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
